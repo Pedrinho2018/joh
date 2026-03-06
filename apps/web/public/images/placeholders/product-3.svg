@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="sky3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a2636"/>
+      <stop offset="100%" stop-color="#0d1218"/>
+    </linearGradient>
+    <linearGradient id="dryer" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4a5568"/>
+      <stop offset="50%" stop-color="#6b7c8f"/>
+      <stop offset="100%" stop-color="#4a5568"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky3)"/>
+  <!-- Ground -->
+  <rect x="0" y="680" width="1200" height="120" fill="#1a202c"/>
+  <!-- Dryer main body -->
+  <rect x="200" y="200" width="700" height="400" fill="url(#dryer)" rx="20"/>
+  <!-- Dryer cylinder -->
+  <ellipse cx="250" cy="400" rx="50" ry="180" fill="#3d4a5c"/>
+  <ellipse cx="850" cy="400" rx="50" ry="180" fill="#3d4a5c"/>
+  <rect x="250" y="220" width="600" height="360" fill="#5a6b7d"/>
+  <!-- Cylinder lines -->
+  <line x1="250" y1="280" x2="850" y2="280" stroke="#3d4a5c" stroke-width="3"/>
+  <line x1="250" y1="340" x2="850" y2="340" stroke="#3d4a5c" stroke-width="3"/>
+  <line x1="250" y1="400" x2="850" y2="400" stroke="#3d4a5c" stroke-width="3"/>
+  <line x1="250" y1="460" x2="850" y2="460" stroke="#3d4a5c" stroke-width="3"/>
+  <line x1="250" y1="520" x2="850" y2="520" stroke="#3d4a5c" stroke-width="3"/>
+  <!-- Burner/heat source -->
+  <rect x="920" y="280" width="180" height="240" fill="#3d4a5c" rx="12"/>
+  <rect x="940" y="320" width="140" height="160" fill="#2d3748" rx="8"/>
+  <circle cx="1010" cy="400" r="40" fill="#1a202c" stroke="#C88A2A" stroke-width="4"/>
+  <circle cx="1010" cy="400" r="20" fill="#C88A2A" opacity="0.6"/>
+  <!-- Exhaust -->
+  <rect x="550" y="120" width="80" height="80" fill="#4a5568" rx="8"/>
+  <ellipse cx="590" cy="120" rx="35" ry="12" fill="#3d4a5c"/>
+  <!-- Support frame -->
+  <rect x="280" y="600" width="40" height="80" fill="#4a5568"/>
+  <rect x="780" y="600" width="40" height="80" fill="#4a5568"/>
+  <!-- Heat glow -->
+  <circle cx="1010" cy="400" r="100" fill="#C88A2A" opacity="0.15"/>
+  <!-- Branding -->
+  <text x="60" y="760" fill="#C88A2A" font-family="Inter, Arial" font-size="32" font-weight="700">JHONROB</text>
+  <text x="260" y="760" fill="#718096" font-family="Inter, Arial" font-size="24">Secador Rotativo</text>
+</svg>

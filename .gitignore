@@ -1,0 +1,17 @@
+node_modules
+.next
+.vercel
+.env
+apps/web/.next
+apps/web/node_modules
+apps/web/.env
+apps/automation/.venv
+apps/automation/__pycache__
+apps/automation/logs/*.log
+apps/automation/reports/*.md
+apps/automation/reports/*.html
+apps/automation/data
+prisma/dev.db
+prisma/dev.db-journal
+uploads
+dist

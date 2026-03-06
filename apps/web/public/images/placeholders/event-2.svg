@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <rect width="1200" height="700" fill="#0D1116"/>
+  <path d="M80 560 C320 420, 480 640, 700 420 S1080 260, 1140 520" fill="none" stroke="#7F9C31" stroke-width="18" opacity="0.7"/>
+  <path d="M120 610 C340 500, 560 700, 800 480 S1080 360, 1120 600" fill="none" stroke="#C88A2A" stroke-width="10" opacity="0.65"/>
+  <text x="120" y="180" fill="#FFFFFF" font-family="Inter, Arial" font-size="52" font-weight="700">Roadshow Técnico</text>
+  <text x="120" y="240" fill="#93A0B0" font-family="Inter, Arial" font-size="28">Placeholder para capa de evento</text>
+</svg>

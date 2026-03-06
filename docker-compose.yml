@@ -1,0 +1,72 @@
+version: "3.9"
+
+services:
+  web:
+    image: node:22-alpine
+    working_dir: /workspace
+    command: sh -c "npm install && npx prisma generate && npx prisma db push && node prisma/seed.js && npm --workspace apps/web run dev"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/workspace
+      - web_node_modules:/workspace/node_modules
+      - web_app_node_modules:/workspace/apps/web/node_modules
+      - web_next_cache:/workspace/apps/web/.next
+      - uploads_data:/workspace/uploads
+    environment:
+      DATABASE_URL: file:/workspace/prisma/dev.db
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-demo123}
+      AUTOMATION_WEBHOOK_URL: ${AUTOMATION_WEBHOOK_URL:-http://automation:8000}
+      PUBLIC_SITE_URL: ${PUBLIC_SITE_URL:-http://localhost:3000}
+      SMTP_HOST: ${SMTP_HOST:-mailhog}
+      SMTP_PORT: ${SMTP_PORT:-1025}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      SMTP_TO: ${SMTP_TO:-contato@jhonrob.com.br}
+      SMTP_FROM: ${SMTP_FROM:-no-reply@jhonrob.local}
+    depends_on:
+      - automation
+
+  automation:
+    image: python:3.13-slim
+    working_dir: /workspace/apps/automation
+    command: sh -c "pip install --no-cache-dir -r requirements.txt && uvicorn app.main:app --host 0.0.0.0 --port 8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/workspace
+    environment:
+      AUTOMATION_PORT: ${AUTOMATION_PORT:-8000}
+      SMTP_HOST: ${SMTP_HOST:-mailhog}
+      SMTP_PORT: ${SMTP_PORT:-1025}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      SMTP_TO: ${SMTP_TO:-contato@jhonrob.com.br}
+      SMTP_FROM: ${SMTP_FROM:-no-reply@jhonrob.local}
+      REPORT_CRON_HOUR: ${REPORT_CRON_HOUR:-18}
+      TIMEZONE: ${TIMEZONE:-America/Sao_Paulo}
+
+  db:
+    image: postgres:16-alpine
+    profiles: ["postgres"]
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-jhonrob}
+      POSTGRES_USER: ${POSTGRES_USER:-jhonrob}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-jhonrob}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+
+volumes:
+  web_node_modules:
+  web_app_node_modules:
+  web_next_cache:
+  uploads_data:
+  pg_data:

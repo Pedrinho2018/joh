@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  @apply bg-bg text-white font-sans antialiased;
+  background-image:
+    radial-gradient(circle at 10% 0%, rgba(127, 156, 49, 0.12), transparent 40%),
+    radial-gradient(circle at 85% 10%, rgba(200, 138, 42, 0.12), transparent 45%),
+    linear-gradient(180deg, #0d1116 0%, #0b1015 100%);
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+  @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-bg;
+}
+
+/* Remove outline on mouse click but keep for keyboard */
+*:focus:not(:focus-visible) {
+  @apply outline-none ring-0;
+}
+
+/* Smooth animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.container-shell {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.panel {
+  @apply rounded-3xl border border-line bg-panel/80 shadow-soft backdrop-blur;
+}
+
+.section-title {
+  @apply text-2xl font-bold tracking-tight sm:text-3xl;
+}
+
+.section-subtitle {
+  @apply mt-2 max-w-3xl text-sm text-muted sm:text-base;
+}
+
+/* Horizontal scroll for carousel */
+.scroll-container {
+  @apply flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(127, 156, 49, 0.3) transparent;
+}
+
+.scroll-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(127, 156, 49, 0.3);
+  border-radius: 3px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(127, 156, 49, 0.5);
+}
+
+.scroll-item {
+  @apply flex-shrink-0 snap-start;
+}

@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum LeadSource {
+  CONTACT
+  CATALOG
+  QUOTE
+}
+
+enum LeadStatus {
+  NEW
+  IN_CONTACT
+  PROPOSAL
+  WON
+  LOST
+}
+
+enum ProductType {
+  EQUIPMENT
+  PART
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  DONE
+}
+
+model Lead {
+  id        Int        @id @default(autoincrement())
+  name      String
+  email     String
+  phone     String
+  source    LeadSource
+  status    LeadStatus  @default(NEW)
+  message   String?
+  notes     String?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @default(now()) @updatedAt
+}
+
+model ProductCategory {
+  id          Int         @id @default(autoincrement())
+  name        String
+  slug        String      @unique
+  type        ProductType
+  description String
+  products    Product[]
+}
+
+model Product {
+  id         Int             @id @default(autoincrement())
+  name       String
+  slug       String          @unique
+  type       ProductType
+  categoryId Int
+  category   ProductCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  shortDesc  String
+  longDesc   String
+  specs      Json
+  images     Json
+  createdAt  DateTime        @default(now())
+}
+
+model Event {
+  id         Int      @id @default(autoincrement())
+  title      String
+  slug       String   @unique
+  date       DateTime
+  location   String
+  content    String
+  coverImage String
+  createdAt  DateTime @default(now())
+}
+
+model Ticket {
+  id          Int          @id @default(autoincrement())
+  protocol    String       @unique
+  name        String
+  email       String
+  phone       String
+  subject     String
+  message     String
+  status      TicketStatus @default(OPEN)
+  attachments Json
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
